@@ -6,7 +6,7 @@
     "MixinAnvilMenu",
     "MixinEnchantment",
     "MixinEnchantmentHelper",
-    "MixinItemStack"
+    "MixinEnchantmentMenu"
   ],
   "injectors": {
     "defaultRequire": 1
