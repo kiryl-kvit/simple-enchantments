@@ -14,6 +14,9 @@
 			"com.kvit.client.SimpleEnchantmentsClient"
 		]
 	},
+	"mixins": [
+		"simple-enchantments.mixins.json"
+	],
 	"depends": {
 		"fabricloader": ">=0.18.4",
 		"minecraft": "~1.21.11",

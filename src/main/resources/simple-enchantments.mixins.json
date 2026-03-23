@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.kvit.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MixinAnvilMenu",
+    "MixinEnchantment",
+    "MixinEnchantmentHelper",
+    "MixinItemStack"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

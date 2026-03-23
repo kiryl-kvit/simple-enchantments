@@ -1,5 +1,14 @@
 # Simple Enchantments
 
+## Changes
+
+- Removes mutual exclusivity checks between enchantments, so normally incompatible enchantments can exist on the same item.
+- Removes supported-item checks, so any enchantment can be applied to any item.
+- Treats every item as enchantable in the enchanting table UI.
+- Gives items without a vanilla enchantability component a fallback enchantability value so the enchanting table can still roll offers for them.
+- Lets anvils apply enchantments to items that vanilla normally refuses to store enchantments on.
+- Keeps vanilla max enchantment levels, enchanting costs, and the anvil level cap unchanged.
+
 ## Compatibility
 
 - Minecraft `1.21.11`
