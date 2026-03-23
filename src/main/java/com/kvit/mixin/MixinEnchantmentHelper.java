@@ -1,6 +1,7 @@
 package com.kvit.mixin;
 
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -12,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class MixinEnchantmentHelper {
 
     /**
-     * In {@code selectEnchantment}, the method calls {@code ItemStack.get(DataComponents.ENCHANTABLE)}
-     * and immediately returns an empty list if the result is null. We redirect that
-     * call to return a fallback {@link Enchantable} with value 10 for items that
-     * lack the component, allowing the enchanting table selection algorithm to
-     * proceed for any item type.
+     * The enchanting table uses the ENCHANTABLE component in both cost generation
+     * and enchantment selection. Items like dirt do not have that component, so
+     * vanilla produces zero costs and no offers. We supply a fallback value only
+     * for ENCHANTABLE lookups in those methods so arbitrary unenchanted items can
+     * generate normal enchanting offers.
      */
     @Redirect(
-            method = "selectEnchantment",
+            method = {"getEnchantmentCost", "selectEnchantment"},
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/item/ItemStack;get(Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;"
@@ -27,7 +28,7 @@ public class MixinEnchantmentHelper {
     )
     private static Object simpleEnchantments$fallbackEnchantable(ItemStack stack, DataComponentType<?> type) {
         Object value = stack.get(type);
-        if (value == null) {
+        if (value == null && type == DataComponents.ENCHANTABLE) {
             return new Enchantable(10);
         }
         return value;
