@@ -1,0 +1,23 @@
+{
+	"schemaVersion": 1,
+	"id": "simple-enchantments",
+	"version": "${version}",
+	"name": "Simple Enchantments",
+	"description": "Enchantments enhancements for Minecraft.",
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.kvit.SimpleEnchantments"
+		],
+		"client": [
+			"com.kvit.client.SimpleEnchantmentsClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
